@@ -1,7 +1,7 @@
 // import modules
 
 import express from 'express'
-
+import { fish } from './data/fish-caught-data.js'
 // Create Express app
 
 const app = express()
@@ -12,11 +12,17 @@ app.set('view engine', 'ejs')
 
 // Mount Middleware (app.use)
 app.get('/', function(req, res) {
-    res.send('<h1>hello, friend</h1>')
+    res.redirect('/fish-caught')
 })
 
 app.get('/home', function(req, res) {
     res.render('home')
+})
+
+app.get('/fish-caught', function(req, res) {
+    res.render('fish-caught/index', {
+        fish_caught: fish
+    })
 })
 
 // Mount routes
